@@ -70,12 +70,15 @@ jobs:
          mkdir -p $HOME/.kube
          echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
 
-    - name: Test kubectl configuration
-      run: kubectl cluster-info
+    - name: Prepare Kubernetes deployment file
+      run: |
+        sed -i 's|IMAGE_NAME_PLACEHOLDER|${{ secrets.DOCKER_USERNAME }}/my-spring-boot-app|g' ./k8s/deployment.yaml
+        sed -i 's|TAG_PLACEHOLDER|${{ github.sha }}|g' ./k8s/deployment.yaml
 
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f k8s/ --validate=false
         kubectl rollout status deployment/my-spring-boot-app-deployment
+
 
 
