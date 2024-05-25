@@ -69,6 +69,7 @@ jobs:
       run: |
          mkdir -p $HOME/.kube
          echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
+         cat $HOME/.kube/config  # Temporarily add this to verify the content is correct
 
     - name: Prepare Kubernetes deployment file
       run: |
@@ -79,6 +80,7 @@ jobs:
       run: |
         kubectl apply -f k8s/ --validate=false
         kubectl rollout status deployment/my-spring-boot-app-deployment
+        kubectl get all -n default
 
 
 
