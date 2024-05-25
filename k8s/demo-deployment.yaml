@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: spring-boot-app
-        image: georgishterev/my-spring-boot-app:newversion5
+        image: IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER 
         ports:
         - containerPort: 8080
