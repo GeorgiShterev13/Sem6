@@ -34,7 +34,7 @@ jobs:
     - name: Build Docker image
       run: docker build . -t ${{ secrets.DOCKER_USERNAME }}/my-spring-boot-app:${{ github.sha }}
       working-directory: ./demo
-      
+
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
@@ -67,20 +67,20 @@ jobs:
 
     - name: Load Kubernetes config
       run: |
-         mkdir -p $HOME/.kube
-         echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
-         cat $HOME/.kube/config  # Temporarily add this to verify the content is correct
-
-    - name: Prepare Kubernetes deployment file
-      run: |
-        sed -i 's|IMAGE_NAME_PLACEHOLDER|${{ secrets.DOCKER_USERNAME }}/my-spring-boot-app|g' ./k8s/demo-deployment.yaml
-        sed -i 's|TAG_PLACEHOLDER|${{ github.sha }}|g' ./k8s/demo-deployment.yaml
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
+        cat $HOME/.kube/config  # Temporarily add this to verify the content is correct
+        kubectl config view --minify  # Show minimal config to debug
 
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f k8s/ --validate=false
+        kubectl get deployments,svc,pods -o wide  # Get more info on resources
+        kubectl describe pods  # Describe pods to see potential issues
+
+    - name: Verify deployment
+      run: |
         kubectl rollout status deployment/my-spring-boot-app-deployment
         kubectl get all -n default
-
 
 
