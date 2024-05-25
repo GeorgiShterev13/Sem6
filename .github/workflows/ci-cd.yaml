@@ -72,8 +72,8 @@ jobs:
 
     - name: Prepare Kubernetes deployment file
       run: |
-        sed -i 's|IMAGE_NAME_PLACEHOLDER|${{ secrets.DOCKER_USERNAME }}/my-spring-boot-app|g' ./k8s/deployment.yaml
-        sed -i 's|TAG_PLACEHOLDER|${{ github.sha }}|g' ./k8s/deployment.yaml
+        sed -i 's|IMAGE_NAME_PLACEHOLDER|${{ secrets.DOCKER_USERNAME }}/my-spring-boot-app|g' ./k8s/demo-deployment.yaml
+        sed -i 's|TAG_PLACEHOLDER|${{ github.sha }}|g' ./k8s/demo-deployment.yaml
 
     - name: Deploy to Kubernetes
       run: |
