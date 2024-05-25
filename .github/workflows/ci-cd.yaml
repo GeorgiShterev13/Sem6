@@ -67,17 +67,14 @@ jobs:
 
     - name: Load Kubernetes config
       run: |
-        mkdir -p $HOME/.kube
-        echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
+         echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
 
     - name: Test kubectl configuration
       run: kubectl cluster-info
 
     - name: Deploy to Kubernetes
-      run: kubectl apply -f k8s/ --validate=false
-
-    - name: Verify deployment
       run: |
+        kubectl apply -f k8s/ --validate=false
         kubectl rollout status deployment/my-spring-boot-app-deployment
 
 
