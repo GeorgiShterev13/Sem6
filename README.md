@@ -1,3 +1,3 @@
 # Sem6
 
-This is my project for semester 6
+This is my project for semester 6.
