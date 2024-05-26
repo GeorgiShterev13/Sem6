@@ -58,8 +58,15 @@ jobs:
         chmod +x ./kubectl
         sudo mv ./kubectl /usr/local/bin/kubectl
 
-    - name: Install AWS CLI
-      run: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install
+    - name: Install or Update AWS CLI
+      run: |
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip -o awscliv2.zip
+        if [ -d "/usr/local/aws-cli/v2/current" ]; then
+          sudo ./aws/install --update
+        else
+          sudo ./aws/install
+        fi
 
     - name: Set up AWS CLI
       uses: aws-actions/configure-aws-credentials@v1
@@ -72,7 +79,6 @@ jobs:
       run: |
         mkdir -p $HOME/.kube
         echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
-        cat $HOME/.kube/config # Temporarily add this to verify the content is correct
 
     - name: Debug AWS token fetch
       run: aws eks get-token --region ${{ env.AWS_REGION }} --cluster-name video-streaming-eks-cluster
@@ -82,5 +88,3 @@ jobs:
         kubectl apply -f k8s/ --validate=false
         kubectl rollout status deployment/my-spring-boot-app-deployment
         kubectl get all -n default
-
-
