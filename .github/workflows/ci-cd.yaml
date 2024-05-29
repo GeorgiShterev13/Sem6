@@ -34,7 +34,7 @@ jobs:
     - name: Build Docker image
       run: docker build . -t ${{ secrets.DOCKER_USERNAME }}/my-spring-boot-app:${{ github.sha }}
       working-directory: ./demo
-      
+
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
@@ -79,6 +79,9 @@ jobs:
         echo "Kubeconfig size: $(stat -c %s $HOME/.kube/config)"
         echo "Kubeconfig checksum: $(sha256sum $HOME/.kube/config)"
 
+    - name: Debug Token Fetching
+      run: |
+        aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster
 
     - name: Deploy to Kubernetes
       run: |
