@@ -71,10 +71,14 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-central-1
 
-    - name: Load Kubernetes config
+    - name: Load and Verify Kubernetes config
       run: |
         mkdir -p $HOME/.kube
         echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
+        # Check file details without exposing sensitive data
+        echo "Kubeconfig size: $(stat -c %s $HOME/.kube/config)"
+        echo "Kubeconfig checksum: $(sha256sum $HOME/.kube/config)"
+
 
     - name: Deploy to Kubernetes
       run: |
