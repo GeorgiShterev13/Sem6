@@ -71,20 +71,17 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-central-1
 
-    - name: Load and Verify Kubernetes config
+    - name: Set up kubeconfig
       run: |
         mkdir -p $HOME/.kube
         echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
-        # Check file details without exposing sensitive data
-        echo "Kubeconfig size: $(stat -c %s $HOME/.kube/config)"
-        echo "Kubeconfig checksum: $(sha256sum $HOME/.kube/config)"
+        kubectl get nodes  # This is to test the setup within GitHub Actions
+
 
     - name: Debug Token Fetching
       run: |
         aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster
 
-    - name: Test Kubernetes connection
-      run: kubectl get nodes
 
     - name: Deploy to Kubernetes
       run: |
