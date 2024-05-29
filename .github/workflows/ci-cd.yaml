@@ -83,6 +83,9 @@ jobs:
       run: |
         aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster
 
+    - name: Test Kubernetes connection
+      run: kubectl get nodes
+
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f k8s/
