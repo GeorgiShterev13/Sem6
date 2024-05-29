@@ -62,11 +62,7 @@ jobs:
       run: |
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         unzip -o awscliv2.zip
-        if [ -d "/usr/local/aws-cli/v2/current" ]; then
-          sudo ./aws/install --update
-        else
-          sudo ./aws/install
-        fi
+        sudo ./aws/install -u
 
     - name: Set up AWS CLI
       uses: aws-actions/configure-aws-credentials@v1
@@ -80,11 +76,8 @@ jobs:
         mkdir -p $HOME/.kube
         echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
 
-    - name: Debug AWS token fetch
-      run: aws eks get-token --region ${{ env.AWS_REGION }} --cluster-name video-streaming-eks-cluster
-
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f k8s/ --validate=false
+        kubectl apply -f k8s/
         kubectl rollout status deployment/my-spring-boot-app-deployment
         kubectl get all -n default
