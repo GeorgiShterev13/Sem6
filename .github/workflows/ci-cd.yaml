@@ -73,9 +73,11 @@ jobs:
 
     - name: Set up kubeconfig
       run: |
-        
+        mkdir -p $HOME/.kube
         echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
-        kubectl get nodes  # This is to test the setup within GitHub Actions
+        ls -l $HOME/.kube
+        cat $HOME/.kube/config  # Temporarily for debugging, remove later
+      shell: /usr/bin/bash -e {0}
 
 
     - name: Debug Token Fetching
