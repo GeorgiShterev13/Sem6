@@ -73,7 +73,7 @@ jobs:
 
     - name: Set up kubeconfig
       run: |
-        mkdir -p $HOME/.kube
+        
         echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
         kubectl get nodes  # This is to test the setup within GitHub Actions
 
