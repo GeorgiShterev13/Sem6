@@ -77,8 +77,6 @@ jobs:
         echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
         ls -l $HOME/.kube
         cat $HOME/.kube/config  # Temporarily for debugging, remove later
-      
-
 
 
     - name: Debug Token Fetching
