@@ -62,15 +62,19 @@ jobs:
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --region eu-central-1 --name video-streaming-eks-cluster
 
-      - name: Display kubeconfig
-        run: cat $HOME/.kube/config # Only for debugging; should be removed or secured in production
+      - name: Print the current Kubernetes context
+        run: |
+          kubectl config get-contexts
+          kubectl config current-context
 
-      - name: Set default Kubernetes context
-        run: kubectl config use-context arn:aws:eks:eu-central-1:381491972074:cluster/video-streaming-eks-cluster
-
-      - name: Verify Kubernetes cluster access
+      - name: Deploy to Kubernetes
         run: |
           kubectl get nodes
           kubectl apply -f k8s/
           kubectl rollout status deployment/my-spring-boot-app-deployment
           kubectl get all -n default
+
+      - name: Verify AWS Auth token
+        run: |
+          aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster | jq -r '.status.token'
+          aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster | jq -r '.status.expirationTimestamp'
