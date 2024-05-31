@@ -84,7 +84,6 @@ jobs:
       
 
 
-
     - name: Debug Token Fetching
       run: |
         aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster
