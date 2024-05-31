@@ -74,6 +74,11 @@ jobs:
     - name: Update kubeconfig
       run: |
         aws eks update-kubeconfig --region eu-central-1 --name video-streaming-eks-cluster
+        cat $HOME/.kube/config
+        kubectl config get-contexts
+
+    - name: Set Kubectl Context
+      run: kubectl config use-context arn:aws:eks:eu-central-1:381491972074:cluster/video-streaming-eks-cluster
 
     - name: Deploy to Kubernetes
       run: |
@@ -81,5 +86,6 @@ jobs:
         kubectl apply -f k8s/
         kubectl rollout status deployment/my-spring-boot-app-deployment
         kubectl get all -n default
+
 
 
