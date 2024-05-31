@@ -59,10 +59,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-central-1
 
+      - name: Install AWS CLI and jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli jq
+
       - name: Update kubeconfig
         run: |
           aws eks update-kubeconfig --region eu-central-1 --name video-streaming-eks-cluster
-          cat $HOME/.kube/config  # For debugging; remove in production
+          echo "Kubeconfig file content:"
+          cat $HOME/.kube/config
 
       - name: Verify kubeconfig and context
         run: |
@@ -73,7 +79,12 @@ jobs:
         run: |
           TOKEN=$(aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster | jq -r '.status.token')
           echo "Fetched token: $TOKEN"
+          echo "Running kubectl get nodes with the fetched token:"
           kubectl get nodes --token="$TOKEN"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: eu-central-1
 
       - name: Debug IAM Role
         run: |
