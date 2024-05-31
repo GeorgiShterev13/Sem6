@@ -60,16 +60,19 @@ jobs:
           aws-region: eu-central-1
 
       - name: Update kubeconfig
-        run: aws eks update-kubeconfig --region eu-central-1 --name video-streaming-eks-cluster
+        run: |
+          aws eks update-kubeconfig --region eu-central-1 --name video-streaming-eks-cluster
+          cat $HOME/.kube/config  # For debugging; remove in production
 
       - name: Verify kubeconfig and context
         run: |
           kubectl config get-contexts
           kubectl config use-context arn:aws:eks:eu-central-1:381491972074:cluster/video-streaming-eks-cluster
+          echo "Check if the token can be fetched:"
+          kubectl get nodes
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl get nodes
           kubectl apply -f k8s/
           kubectl rollout status deployment/my-spring-boot-app-deployment
           kubectl get all -n default
