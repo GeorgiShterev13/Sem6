@@ -99,3 +99,4 @@ jobs:
           kubectl rollout status deployment/my-spring-boot-app-deployment
           kubectl get all -n default
 
+
