@@ -68,8 +68,12 @@ jobs:
         run: |
           kubectl config get-contexts
           kubectl config use-context arn:aws:eks:eu-central-1:381491972074:cluster/video-streaming-eks-cluster
-          echo "Check if the token can be fetched:"
-          kubectl get nodes
+
+      - name: Fetch AWS EKS token and debug
+        run: |
+          TOKEN=$(aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster | jq -r '.status.token')
+          echo "Fetched token: $TOKEN"
+          kubectl get nodes --token="$TOKEN"
 
       - name: Deploy to Kubernetes
         run: |
