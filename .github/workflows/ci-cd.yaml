@@ -71,12 +71,18 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-central-1
 
-    - name: Set up kubeconfig
+    - name: Setup Kubeconfig
       run: |
         mkdir -p $HOME/.kube
-        echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
+        echo ${{ secrets.KUBE_CONFIG_DATA }} | base64 --decode > $HOME/.kube/config || echo "Failed to decode kubeconfig"
         ls -l $HOME/.kube
-        cat $HOME/.kube/config  # Temporarily for debugging, remove later
+        if test -f "$HOME/.kube/config"; then
+          cat $HOME/.kube/config  # Temporarily for debugging, remove later
+        else
+          echo "kubeconfig does not exist"
+        fi
+      
+
 
 
     - name: Debug Token Fetching
