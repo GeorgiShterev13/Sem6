@@ -96,7 +96,6 @@ jobs:
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f k8s/
-          kubectl rollout status deployment/my-spring-boot-app-deployment
           kubectl get all -n default
 
 
