@@ -71,27 +71,20 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-central-1
 
-    - name: Setup Kubeconfig
+    - name: Set up Kubeconfig
       run: |
         mkdir -p $HOME/.kube
-        echo ${{ secrets.KUBE_CONFIG_DATA }} | base64 --decode > $HOME/.kube/config || echo "Failed to decode kubeconfig"
-        ls -l $HOME/.kube
-        if test -f "$HOME/.kube/config"; then
-          cat $HOME/.kube/config  # Temporarily for debugging, remove later
-        else
-          echo "kubeconfig does not exist"
-        fi
-      
+        echo ${{ secrets.KUBE_CONFIG_DATA }} | base64 --decode > $HOME/.kube/config
+        cat $HOME/.kube/config  # Check the configuration (remove after debugging)
 
-
-    - name: Debug Token Fetching
+    - name: Fetch Token and Test
       run: |
-        aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster
-
+        TOKEN=$(aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster | jq -r '.status.token')
+        kubectl get nodes --token=$TOKEN
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl get nodes
         kubectl apply -f k8s/
         kubectl rollout status deployment/my-spring-boot-app-deployment
         kubectl get all -n default
+
