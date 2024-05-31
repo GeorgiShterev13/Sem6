@@ -64,27 +64,22 @@ jobs:
         unzip -o awscliv2.zip
         sudo ./aws/install -u
 
-    - name: Set up AWS CLI
+    - name: Set up AWS CLI and update kubeconfig
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-central-1
 
-    - name: Set up Kubeconfig
+    - name: Update kubeconfig
       run: |
-        mkdir -p $HOME/.kube
-        echo ${{ secrets.KUBE_CONFIG_DATA }} | base64 --decode > $HOME/.kube/config
-        cat $HOME/.kube/config  # Check the configuration (remove after debugging)
-
-    - name: Fetch Token and Test
-      run: |
-        TOKEN=$(aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster | jq -r '.status.token')
-        kubectl get nodes --token=$TOKEN
+        aws eks update-kubeconfig --region eu-central-1 --name video-streaming-eks-cluster
 
     - name: Deploy to Kubernetes
       run: |
+        kubectl get nodes
         kubectl apply -f k8s/
         kubectl rollout status deployment/my-spring-boot-app-deployment
         kubectl get all -n default
+
 
