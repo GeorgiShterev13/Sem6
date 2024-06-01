@@ -70,32 +70,18 @@ jobs:
           echo "Kubeconfig file content:"
           cat $HOME/.kube/config
 
-      - name: Verify kubeconfig and context
-        run: |
-          kubectl config get-contexts
-          kubectl config use-context arn:aws:eks:eu-central-1:381491972074:cluster/video-streaming-eks-cluster
-
-      - name: Fetch AWS EKS token and debug
-        run: |
-          TOKEN=$(aws eks get-token --region eu-central-1 --cluster-name video-streaming-eks-cluster | jq -r '.status.token')
-          echo "Fetched token: $TOKEN"
-          echo "Running kubectl get nodes with the fetched token:"
-          kubectl get nodes --token="$TOKEN"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: eu-central-1
-
-      - name: Debug IAM Role
-        run: |
-          echo "Verifying IAM roles and permissions"
-          aws sts get-caller-identity
-          aws iam get-role --role-name eksClusterRole
-          aws iam get-role --role-name eksNodeRole
 
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f k8s/
           kubectl get all -n default
 
-
+      - name: Deploy to Kubernetes
+        run: |
+          sed -i 's|IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER|${{ secrets.DOCKER_USERNAME }}/my-spring-boot-app:${{ github.sha }}|' ./k8s/deployment.yaml
+          kubectl apply -f ./k8s/
+          kubectl rollout status deployment/spring-boot-app
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: eu-central-1
