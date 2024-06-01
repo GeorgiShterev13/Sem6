@@ -45,15 +45,29 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/my-spring-boot-app:${{ github.sha }}
         working-directory: ./demo
 
+  sonarqube:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: ./gradlew build sonar --info
+        working-directory: ./demo
         
 
   deploy:
-    needs: build-and-test
+    needs: [build-and-test, sonarqube]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
