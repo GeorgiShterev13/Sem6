@@ -77,7 +77,7 @@ jobs:
 
           
       - name: Build and analyze with SonarQube
-        run: ./gradlew build sonar --info --warning-mode all --stacktrace --debug
+        run: ./gradlew build sonar --info --warning-mode all --stacktrace
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
