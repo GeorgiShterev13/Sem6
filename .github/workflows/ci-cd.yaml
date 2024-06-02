@@ -51,7 +51,7 @@ jobs:
     steps:
     
       - name: Build and analyze with SonarQube
-        run: ./gradlew sonarqube
+        run: ./gradlew sonar
         working-directory: ./demo
         
 
