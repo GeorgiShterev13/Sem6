@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class GetVideoResponse {
 
 
-    private Video video;
+    private String video;
 
 
 }
