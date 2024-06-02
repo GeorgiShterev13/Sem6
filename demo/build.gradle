@@ -28,7 +28,7 @@ sonar {
 		property "sonar.projectKey", "Semester-6-Project"
 		property "sonar.projectName", "Semester 6 Project"
 		property 'sonar.host.url', 'http://localhost:9000'
-		property 'sonar.login', 'sqp_eea5374dc8d5d6fe5a30732c5ab3e9422e011dd9'
+		property 'sonar.token', 'sqp_eea5374dc8d5d6fe5a30732c5ab3e9422e011dd9'
 	}
 }
 
