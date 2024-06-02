@@ -50,9 +50,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-      - name: Build and analyze with SonarQube
-        run: ./gradlew built sonar
-        working-directory: ./demo
+
+
+
+
+      - name: Official SonarQube Scan
+        # You may pin to the exact commit or the version.
+        # uses: SonarSource/sonarqube-scan-action@86fe81775628f1c6349c28baab87881a2170f495
+        uses: SonarSource/sonarqube-scan-action@v2.1.0
+          
         
 
   deploy:
