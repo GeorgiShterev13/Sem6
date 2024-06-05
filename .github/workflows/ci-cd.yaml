@@ -114,11 +114,6 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f k8s/
-          kubectl get all -n default
-
-      - name: Deploy to Kubernetes
-        run: |
           sed -i 's|IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER|${{ secrets.DOCKER_USERNAME }}/my-spring-boot-app:${{ github.sha }}|' ./k8s/demo-deployment.yaml
           kubectl apply -f ./k8s/
           kubectl rollout status deployment/spring-boot-app
