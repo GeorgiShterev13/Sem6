@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: spring-boot-app
 spec:
-  replicas: 3  # Increased replicas for high availability
+  replicas: 2  # Increased replicas for high availability
   selector:
     matchLabels:
       app: spring-boot-app
