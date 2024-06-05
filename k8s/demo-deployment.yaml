@@ -3,10 +3,15 @@ kind: Deployment
 metadata:
   name: spring-boot-app
 spec:
-  replicas: 1
+  replicas: 3  # Increased replicas for high availability
   selector:
     matchLabels:
       app: spring-boot-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -14,7 +19,18 @@ spec:
     spec:
       containers:
       - name: spring-boot-app
-        image: IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER # This will be replaced dynamically in the CI/CD pipeline
+        image: IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER  # This will be replaced dynamically
         ports:
         - containerPort: 8080
-
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 20
+          periodSeconds: 5
