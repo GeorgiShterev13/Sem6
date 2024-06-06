@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - './my-microservices'
+      - 'my-microservices/demo'
   pull_request:
     branches: [main]
     paths:
-      - './my-microservices'
+      - 'my-microservices/demo'
 
 jobs:
   build-and-test:
