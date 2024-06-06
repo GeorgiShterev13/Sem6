@@ -30,9 +30,13 @@ sonar {
 		property "sonar.projectKey", "GeorgiShterev13_Sem6"
 		property "sonar.organization", "georgishterev13"
 		property "sonar.host.url", "https://sonarcloud.io"
+		property "sonar.gradle.skipCompile", "true"
 	}
 }
-
+// Ensure compilation tasks are run before SonarQube
+tasks.named("sonarqube").configure {
+	mustRunAfter "compileJava"
+}
 jacocoTestReport {
 	reports {
 		xml.required.set(true)
