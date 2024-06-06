@@ -3,8 +3,12 @@ name: Java CI/CD Pipeline without SonarQube
 on:
   push:
     branches: [main]
+    paths:
+      - 'my-microservices/demo'
   pull_request:
     branches: [main]
+    paths:
+      - 'my-microservices/demo'
 
 jobs:
   build-and-test:
