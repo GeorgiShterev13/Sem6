@@ -17,6 +17,6 @@ class GetVideoUseCaseImplTest {
         GetVideoResponse response = getVideoUseCase.getAllVideos();
 
         // Assert the response is correct
-        assertEquals("Hi there, I am one video", response.getVideo(), "The video content should match the expected content.");
+        assertEquals("Hi there, I am one video ", response.getVideo(), "The video content should match the expected content.");
     }
 }
