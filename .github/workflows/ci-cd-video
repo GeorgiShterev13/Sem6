@@ -1,0 +1,81 @@
+name: Java CI/CD Pipeline for Video Service
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'my-microservices/video/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'my-microservices/video/**'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for Gradle
+        run: chmod +x ./gradlew
+        working-directory: ./my-microservices
+
+      - name: Build with Gradle
+        run: ./gradlew build
+        working-directory: ./my-microservices
+
+      - name: Run tests
+        run: ./gradlew test
+        working-directory: ./my-microservices
+
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/video-service:${{ github.sha }} -f video/Dockerfile .
+        working-directory: ./my-microservices
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker image to Docker Hub
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/video-service:${{ github.sha }}
+        working-directory: ./my-microservices
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
+      - name: Install AWS CLI and jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli jq
+
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig --region eu-central-1 --name video-streaming-eks-cluster
+          echo "Kubeconfig file content:"
+          cat $HOME/.kube/config
+
+      - name: Deploy to Kubernetes
+        run: |
+          sed -i 's|IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER|${{ secrets.DOCKER_USERNAME }}/video-service:${{ github.sha }}|' ./k8s/video-deployment.yaml
+          kubectl apply -f ./k8s/video-deployment.yaml
+          kubectl rollout status deployment/video-service-app
