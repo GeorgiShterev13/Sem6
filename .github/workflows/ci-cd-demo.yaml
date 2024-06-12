@@ -24,16 +24,16 @@ jobs:
           distribution: 'temurin'
 
       - name: Grant execute permission for Gradle
-        run: chmod +x ./gradlew
+        run: chmod +x ./common/gradlew
         working-directory: ./my-microservices
 
       - name: Build with Gradle
-        run: ./gradlew build
-        working-directory: ./my-microservices
+        run: ./common/gradlew build
+        working-directory: ./my-microservices/demo
 
       - name: Run tests
-        run: ./gradlew test
-        working-directory: ./my-microservices
+        run: ./common/gradlew test
+        working-directory: ./my-microservices/demo
 
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/demo-service:${{ github.sha }} -f demo/Dockerfile .
