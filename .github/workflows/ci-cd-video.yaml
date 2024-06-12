@@ -25,7 +25,7 @@ jobs:
 
       - name: Grant execute permission for Gradle
         run: chmod +x ./gradlew
-        working-directory: ./my-microservices
+        working-directory: ./my-microservices/common
 
       - name: Build with Gradle
         run: ./gradlew build
