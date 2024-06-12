@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: demo-service
+  name: video-service
 spec:
   type: LoadBalancer
   ports:
-  - port: 8081
-    targetPort: 8081
+  - port: 8082
+    targetPort: 8082
   selector:
-    app: demo-service-app
+    app: video-service-app

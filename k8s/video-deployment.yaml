@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-service-app
+  name: video-service-app
 spec:
   replicas: 2  # Increased replicas for high availability
   selector:
     matchLabels:
-      app: demo-service-app
+      app: video-service-app
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -15,22 +15,22 @@ spec:
   template:
     metadata:
       labels:
-        app: demo-service-app
+        app: video-service-app
     spec:
       containers:
-      - name: demo-service-app
+      - name: video-service-app
         image: IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER  # This will be replaced dynamically
         ports:
-        - containerPort: 8081
+        - containerPort: 8082
         readinessProbe:
           httpGet:
             path: /actuator/health
-            port: 8081
+            port: 8082
           initialDelaySeconds: 10
           periodSeconds: 5
         livenessProbe:
           httpGet:
             path: /actuator/health
-            port: 8081
+            port: 8082
           initialDelaySeconds: 20
           periodSeconds: 5
