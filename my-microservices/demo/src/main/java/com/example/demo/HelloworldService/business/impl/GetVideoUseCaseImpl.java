@@ -13,7 +13,7 @@ public class GetVideoUseCaseImpl implements GetVideoUseCase {
 
     @Override
     public GetVideoResponse getAllVideos() {
-        String video =  "Hi there, I am one video ";
+        String video =  "Hi there, I am a video ";
         GetVideoResponse getVideoResponse = new GetVideoResponse(video);
 
 

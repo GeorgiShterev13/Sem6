@@ -29,7 +29,7 @@ public class VideoController {
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentLength(file.getSize());
             amazonS3.putObject(bucketName, keyName, file.getInputStream(), metadata);
-            return ResponseEntity.ok("Video uploaded successfully: " + keyName);
+            return ResponseEntity.ok("Video uploaded successfully with a name: " + keyName);
         } catch (IOException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Could not upload the video: " + file.getOriginalFilename() + "!");
