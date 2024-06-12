@@ -1,8 +1,24 @@
+version: '3.8'
+
 services:
-  rabbitmq:
-    image: 'rabbitmq:latest'
-    environment:
-      - 'RABBITMQ_DEFAULT_PASS=secret'
-      - 'RABBITMQ_DEFAULT_USER=myuser'
+  demo-service:
+    build:
+      context: .
+      dockerfile: demo/Dockerfile
     ports:
-      - '5672'
+      - "8081:8080"
+    networks:
+      - my-network
+
+  video-service:
+    build:
+      context: .
+      dockerfile: video/Dockerfile
+    ports:
+      - "8082:8080"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge

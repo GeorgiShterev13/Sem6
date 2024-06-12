@@ -1,0 +1,77 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id "org.sonarqube" version "4.4.1.3373"
+    id 'jacoco' // Apply the jacoco plugin, a core Gradle plugin
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repo.spring.io/release"
+    }
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "GeorgiShterev13_Sem6"
+        property "sonar.organization", "georgishterev13"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.gradle.skipCompile", "true"
+    }
+}
+
+// Ensure compilation tasks are run before SonarQube
+tasks.named("sonarqube").configure {
+    mustRunAfter "compileJava"
+}
+
+jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        html.required.set(true) // Enable HTML report as well, if needed
+    }
+}
+
+test.finalizedBy jacocoTestReport
+
+// To ensure the JaCoCo test report is always created when we run the sonarqube task
+// Let’s setup the following dependsOn relationship:
+tasks.named('sonarqube').configure {
+    dependsOn test
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'com.amazonaws:aws-java-sdk-s3:1.12.235'
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
