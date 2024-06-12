@@ -24,8 +24,8 @@ jobs:
           distribution: 'temurin'
 
       - name: Grant execute permission for Gradle
-        run: chmod +x gradlew
-        working-directory: ./my-microservices/common
+        run: chmod +x common/gradlew
+        working-directory: ./my-microservices
 
       - name: Build with Gradle
         run: /gradlew build
