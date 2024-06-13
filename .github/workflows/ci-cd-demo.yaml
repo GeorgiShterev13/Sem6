@@ -78,4 +78,5 @@ jobs:
         run: |
           sed -i 's|IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER|${{ secrets.DOCKER_USERNAME }}/demo-service:${{ github.sha }}|' ./k8s/demo-deployment.yaml
           kubectl apply -f ./k8s/demo-deployment.yaml
+          kubectl apply -f ./k8s/demo-service.yaml
           kubectl rollout status deployment/demo-service-app
