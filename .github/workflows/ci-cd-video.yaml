@@ -3,12 +3,12 @@ name: Java CI/CD Pipeline for Video Service
 on:
   push:
     branches: [main]
-    paths:
-      - 'my-microservices/video/**'
+    # paths:
+    #   - 'my-microservices/video/**'
   pull_request:
     branches: [main]
-    paths:
-      - 'my-microservices/video/**'
+    # paths:
+    #   - 'my-microservices/video/**'
 
 jobs:
   build-and-test:
@@ -29,11 +29,11 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
-        working-directory: ./my-microservices
+        working-directory: ./my-microservices/common
 
       - name: Run tests
-        run: ./gradlew test
-        working-directory: ./my-microservices
+        run: ..common/gradlew test
+        working-directory: ./my-microservices/video
 
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/video-service:${{ github.sha }} -f video/Dockerfile .
@@ -78,4 +78,5 @@ jobs:
         run: |
           sed -i 's|IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER|${{ secrets.DOCKER_USERNAME }}/video-service:${{ github.sha }}|' ./k8s/video-deployment.yaml
           kubectl apply -f ./k8s/video-deployment.yaml
+          kubectl apply -f ./k8s/video-service.yaml
           kubectl rollout status deployment/video-service-app
