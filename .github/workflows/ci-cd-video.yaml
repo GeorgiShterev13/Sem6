@@ -3,12 +3,12 @@ name: Java CI/CD Pipeline for Video Service
 on:
   push:
     branches: [main]
-    # paths:
-    #   - 'my-microservices/video/**'
+    paths:
+      - 'my-microservices/video/**'
   pull_request:
     branches: [main]
-    # paths:
-    #   - 'my-microservices/video/**'
+    paths:
+      - 'my-microservices/video/**'
 
 jobs:
   build-and-test:
