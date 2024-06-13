@@ -32,8 +32,8 @@ jobs:
         working-directory: ./my-microservices/common
 
       - name: Run tests
-        run: ./gradlew test
-        working-directory: ./my-microservices/common
+        run: ../common/gradlew test
+        working-directory: ./my-microservices/demo
 
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/demo-service:${{ github.sha }} -f demo/Dockerfile .
