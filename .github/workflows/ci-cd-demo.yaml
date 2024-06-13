@@ -28,11 +28,11 @@ jobs:
         working-directory: ./my-microservices/common
 
       - name: Build with Gradle
-        run: /gradlew build
+        run: ./gradlew build
         working-directory: ./my-microservices/common
 
       - name: Run tests
-        run: /gradlew test
+        run: ./gradlew test
         working-directory: ./my-microservices/common
 
       - name: Build Docker image
