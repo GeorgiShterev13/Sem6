@@ -3,12 +3,12 @@ name: Java CI/CD Pipeline for Video Service
 on:
   push:
     branches: [main]
-    paths:
-      - 'my-microservices/video/**'
+    # paths:
+    #   - 'my-microservices/video/**'
   pull_request:
     branches: [main]
-    paths:
-      - 'my-microservices/video/**'
+    # paths:
+    #   - 'my-microservices/video/**'
 
 jobs:
   build-and-test:
@@ -25,15 +25,15 @@ jobs:
 
       - name: Grant execute permission for Gradle
         run: chmod +x ./gradlew
-        working-directory: ./my-microservices
+        working-directory: ./my-microservices/common
 
       - name: Build with Gradle
         run: ./gradlew build
-        working-directory: ./my-microservices
+        working-directory: ./my-microservices/common
 
       - name: Run tests
-        run: ./gradlew test
-        working-directory: ./my-microservices
+        run: ../common/gradlew test
+        working-directory: ./my-microservices/video
 
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/video-service:${{ github.sha }} -f video/Dockerfile .
@@ -48,6 +48,44 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/video-service:${{ github.sha }}
         working-directory: ./my-microservices
+        
+  sonarqube:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Cache SonarQube packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+          
+      - name: Cache Gradle packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+
+      - name: Test SonarQube connection
+        run: curl -I ${{ secrets.SONAR_HOST_URL }}
+
+          
+      - name: Build and analyze with SonarQube
+        run: ./gradlew build sonar --info
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        working-directory: ./my-microservices/common
 
   deploy:
     needs: build-and-test
@@ -78,4 +116,5 @@ jobs:
         run: |
           sed -i 's|IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER|${{ secrets.DOCKER_USERNAME }}/video-service:${{ github.sha }}|' ./k8s/video-deployment.yaml
           kubectl apply -f ./k8s/video-deployment.yaml
+          kubectl apply -f ./k8s/video-service.yaml
           kubectl rollout status deployment/video-service-app

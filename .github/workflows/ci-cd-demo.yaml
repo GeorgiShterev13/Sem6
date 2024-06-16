@@ -25,15 +25,15 @@ jobs:
 
       - name: Grant execute permission for Gradle
         run: chmod +x ./gradlew
-        working-directory: ./my-microservices
+        working-directory: ./my-microservices/common
 
       - name: Build with Gradle
         run: ./gradlew build
-        working-directory: ./my-microservices
+        working-directory: ./my-microservices/common
 
       - name: Run tests
-        run: ./gradlew test
-        working-directory: ./my-microservices
+        run: ../common/gradlew test
+        working-directory: ./my-microservices/demo
 
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/demo-service:${{ github.sha }} -f demo/Dockerfile .
@@ -78,4 +78,5 @@ jobs:
         run: |
           sed -i 's|IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER|${{ secrets.DOCKER_USERNAME }}/demo-service:${{ github.sha }}|' ./k8s/demo-deployment.yaml
           kubectl apply -f ./k8s/demo-deployment.yaml
+          kubectl apply -f ./k8s/demo-service.yaml
           kubectl rollout status deployment/demo-service-app
