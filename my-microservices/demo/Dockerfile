@@ -6,10 +6,10 @@ LABEL authors="georgishterev"
 WORKDIR /app
 
 # Copy the shared Gradle wrapper and settings
-COPY common/gradlew .
-COPY common/gradlew.bat .
-COPY common/gradle gradle
-COPY common/settings.gradle .
+COPY gradlew .
+COPY gradlew.bat .
+COPY gradle gradle
+COPY settings.gradle .
 
 # Copy the project-specific build script and source code
 COPY demo/build.gradle .

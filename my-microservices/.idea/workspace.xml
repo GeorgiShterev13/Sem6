@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d1b8980-bf07-4b21-98b6-8e299708f7da" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/demo/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/video/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/video/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/video/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/video/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,6 +108,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.DemoApplication (1).executor": "Run",
     "Spring Boot.DemoApplication.executor": "Run",
     "Spring Boot.VideoServiceApplication.executor": "Run",
     "jdk.selected.JAVA_MODULE": "17",
@@ -116,9 +119,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "run.configurations.included.in.services": "true",
     "vue.rearranger.settings.migration": "true"
   },
@@ -148,7 +151,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.DemoApplication">
+  <component name="RunManager" selected="Spring Boot.DemoApplication (1)">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="my-microservices.videoService4" />
@@ -248,6 +251,14 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="DemoApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="my-microservices.demo.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.DemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -262,7 +273,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="my-microservices" />
+      <module name="my-microservices.video.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.video.VideoServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -274,6 +285,7 @@
       <item itemvalue="Gradle.my-microservices" />
       <item itemvalue="Gradle.my-microservices:videoService4 [dependencies]" />
       <item itemvalue="Gradle.my-microservices:videoService4 [projects]" />
+      <item itemvalue="Spring Boot.DemoApplication (1)" />
       <item itemvalue="Spring Boot.DemoApplication" />
       <item itemvalue="Spring Boot.VideoServiceApplication" />
     </list>
@@ -313,6 +325,7 @@
       <workItem from="1718213597582" duration="5503000" />
       <workItem from="1718228122847" duration="9036000" />
       <workItem from="1718577655019" duration="1135000" />
+      <workItem from="1718580876117" duration="1313000" />
     </task>
     <servers />
   </component>
