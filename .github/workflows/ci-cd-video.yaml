@@ -32,7 +32,7 @@ jobs:
         working-directory: ./my-microservices
 
       - name: Run tests
-        run: ../common/gradlew test
+        run: ./gradlew test
         working-directory: ./my-microservices/video
 
       - name: Build Docker image
