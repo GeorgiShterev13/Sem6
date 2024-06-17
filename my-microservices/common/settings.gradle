@@ -1,7 +1,0 @@
-rootProject.name = 'my-microservices'
-
-// Include subprojects explicitly
-include ':demo'
-project(':demo').projectDir = new File('demo')
-include ':video'
-project(':video').projectDir = new File('video')
