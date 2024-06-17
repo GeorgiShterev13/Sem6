@@ -33,7 +33,7 @@ jobs:
 
       - name: Run tests
         run: ./gradlew test
-        working-directory: ./my-microservices/video
+        working-directory: ./my-microservices
 
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/video-service:${{ github.sha }} -f video/Dockerfile .
