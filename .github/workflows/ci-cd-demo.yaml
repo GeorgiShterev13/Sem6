@@ -89,7 +89,7 @@ jobs:
 
 
   deploy:
-    needs: build-and-test
+    needs: [build-and-test, sonarqube]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
