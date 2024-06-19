@@ -1,0 +1,8 @@
+version: 2
+updates:
+  - package-ecosystem: "gradle" # Type of package manager
+    directory: "/" # Location of package manifests in the repository
+    schedule:
+      interval: "daily" # How often to check for updates
+    open-pull-requests-limit: 5 # Limits the number of open pull requests Dependabot will create
+
