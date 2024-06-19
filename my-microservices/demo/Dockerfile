@@ -1,5 +1,5 @@
 # Use the official OpenJDK 17 image as a parent image
-FROM openjdk:17-jdk-slim as builder
+FROM openjdk:18.0.1-jdk-slim as builder
 LABEL authors="georgishterev"
 
 # Set the working directory
@@ -22,7 +22,7 @@ RUN chmod +x gradlew
 RUN ./gradlew build
 
 # Use the official OpenJDK 17 runtime image as a parent image
-FROM openjdk:17-jdk-slim
+FROM openjdk:18.0.1-jdk-slim
 
 # Set the working directory
 WORKDIR /app
