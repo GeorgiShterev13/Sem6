@@ -19,6 +19,16 @@ services:
     networks:
       - my-network
 
+
+  user-service:
+    build:
+      context: .
+      dockerfile: user/Dockerfile
+    ports:
+      - "8083:8080"
+    networks:
+      - my-network
+
 networks:
   my-network:
     driver: bridge

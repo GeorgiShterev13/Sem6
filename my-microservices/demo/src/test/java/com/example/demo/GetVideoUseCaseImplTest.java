@@ -1,22 +1,18 @@
 package com.example.demo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import com.example.demo.HelloworldService.business.impl.GetVideoUseCaseImpl;
-import com.example.demo.HelloworldService.domain.GetVideoResponse;
+import com.example.demo.videoService.business.impl.GetVideoUseCaseImpl;
+import com.example.demo.videoService.domain.GetVideoResponse;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GetVideoUseCaseImplTest {
 
     @Test
-    void getAllVideos_returnsExpectedVideo() {
-        // Setup the use case
-        GetVideoUseCaseImpl getVideoUseCase = new GetVideoUseCaseImpl();
+    void getAllVideosReturnsCorrectResponse() {
+        GetVideoUseCaseImpl getVideoUseCaseImpl = new GetVideoUseCaseImpl();
+        GetVideoResponse response = getVideoUseCaseImpl.getAllVideos();
 
-        // Execute the use case
-        GetVideoResponse response = getVideoUseCase.getAllVideos();
-
-        // Assert the response is correct
-        assertEquals("Hi there, I am a video ", response.getVideo(), "The video content should match the expected content.");
+        assertEquals("Hi there, I am a video ", response.getVideo());
     }
 }

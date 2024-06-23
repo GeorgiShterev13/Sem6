@@ -5,3 +5,5 @@ include ':demo'
 project(':demo').projectDir = new File('demo')
 include ':video'
 project(':video').projectDir = new File('video')
+include ':user'
+project(':user').projectDir = new File('user')
