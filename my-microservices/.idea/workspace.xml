@@ -5,44 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d1b8980-bf07-4b21-98b6-8e299708f7da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/user/my-microservices.user.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/test/java/com/example/demo/VideoControllerIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/org/example/user/business/impl/UserCleanupConfirmationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/org/example/user/business/impl/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/org/example/user/business/interfaces/UserServiceInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/org/example/user/config/RabbitMQConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/org/example/user/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/org/example/user/controllers/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/org/example/user/domain/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/org/example/user/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/video/src/main/java/com/example/video/business/impl/CreateVideoHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/video/src/main/java/com/example/video/business/impl/VideoCleanupService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/video/src/main/java/com/example/video/business/interfaces/CreateVideoHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/video/src/main/java/com/example/video/domain/Video.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/video/src/main/java/com/example/video/repository/VideoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/video/src/test/java/com/example/video/business/impl/VIdeoUnitTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/video/src/test/java/com/example/video/business/impl/VideoIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/video/src/test/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/demo/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/HelloworldService/business/impl/GetVideoUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/videoService/business/impl/GetVideoUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/HelloworldService/business/interfaces/GetVideoUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/videoService/business/interfaces/GetVideoUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/HelloworldService/controllers/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/videoService/controllers/VideoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/HelloworldService/domain/GetVideoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/videoService/domain/GetVideoResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/HelloworldService/domain/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/videoService/domain/Video.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/test/java/com/example/demo/GetVideoUseCaseImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/test/java/com/example/demo/GetVideoUseCaseImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/video/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/video/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/video/src/main/java/com/example/video/VideoServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/video/src/main/java/com/example/video/VideoServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/video/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/video/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/video/src/test/java/com/example/video/business/impl/VideoIntegrationTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,11 +86,16 @@
     "Downloaded.Files.Path.Enabled": "false",
     "Gradle.Build my-microservices.executor": "Run",
     "Gradle.Tests in 'com.example.demo'.executor": "Run",
+    "Gradle.Tests in 'com.example.video.business.impl'.executor": "Run",
     "Gradle.Tests in 'my-microservices.user.test'.executor": "Run",
     "Gradle.Tests in 'my-microservices.video'.executor": "Run",
     "Gradle.UserServiceUnitTest.executor": "Run",
     "Gradle.VideoControllerIntegrationTest (1).executor": "Run",
     "Gradle.VideoControllerIntegrationTest.executor": "Run",
+    "Gradle.VideoControllerIntegrationTest.testUploadVideo.executor": "Run",
+    "Gradle.VideoControllerIntegrationTest.testUploadVideoFailure.executor": "Run",
+    "Gradle.VideoControllerIntegrationTest.uploadVideoFailure.executor": "Run",
+    "Gradle.VideoControllerIntegrationTest.uploadVideoSuccess.executor": "Run",
     "Gradle.VideoControllerTest (1).executor": "Run",
     "Gradle.VideoControllerTest.executor": "Run",
     "Gradle.my-microservices [:Main.main()].executor": "Run",
@@ -148,7 +117,7 @@
     "Spring Boot.DemoApplication (1).executor": "Run",
     "Spring Boot.DemoApplication.executor": "Run",
     "Spring Boot.Main.executor": "Run",
-    "Spring Boot.VideoServiceApplication.executor": "Debug",
+    "Spring Boot.VideoServiceApplication.executor": "Run",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/georgishterev/Desktop/Sem6Backend/Sem6/my-microservices/user/src/main/java",
@@ -196,8 +165,8 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.Main">
-    <configuration name="Tests in 'com.example.demo'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.VideoControllerIntegrationTest.testUploadVideoFailure">
+    <configuration name="VideoControllerIntegrationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -208,9 +177,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":demo:test" />
+            <option value=":video:test" />
             <option value="--tests" />
-            <option value="&quot;com.example.demo.*&quot;" />
+            <option value="&quot;com.example.video.business.impl.VideoControllerIntegrationTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -221,7 +190,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="Tests in 'my-microservices.user.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="VideoControllerIntegrationTest.testUploadVideo" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -232,7 +201,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":user:test" />
+            <option value=":video:test" />
+            <option value="--tests" />
+            <option value="&quot;com.example.video.business.impl.VideoControllerIntegrationTest.testUploadVideo&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -243,7 +214,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="UserServiceUnitTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="VideoControllerIntegrationTest.testUploadVideoFailure" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -254,9 +225,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":user:test" />
+            <option value=":video:test" />
             <option value="--tests" />
-            <option value="&quot;UserServiceUnitTest&quot;" />
+            <option value="&quot;com.example.video.business.impl.VideoControllerIntegrationTest.testUploadVideoFailure&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -267,7 +238,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="VideoControllerIntegrationTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="VideoControllerIntegrationTest.uploadVideoSuccess" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -278,9 +249,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":demo:test" />
+            <option value=":video:test" />
             <option value="--tests" />
-            <option value="&quot;com.example.demo.VideoControllerIntegrationTest&quot;" />
+            <option value="&quot;com.example.video.business.impl.VideoControllerIntegrationTest.uploadVideoSuccess&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -352,10 +323,10 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.Tests in 'com.example.demo'" />
-      <item itemvalue="Gradle.Tests in 'my-microservices.user.test'" />
-      <item itemvalue="Gradle.UserServiceUnitTest" />
-      <item itemvalue="Gradle.VideoControllerIntegrationTest (1)" />
+      <item itemvalue="Gradle.VideoControllerIntegrationTest" />
+      <item itemvalue="Gradle.VideoControllerIntegrationTest.testUploadVideo" />
+      <item itemvalue="Gradle.VideoControllerIntegrationTest.testUploadVideoFailure" />
+      <item itemvalue="Gradle.VideoControllerIntegrationTest.uploadVideoSuccess" />
       <item itemvalue="Gradle.VideoControllerTest" />
       <item itemvalue="Spring Boot.Main" />
       <item itemvalue="Spring Boot.DemoApplication (1)" />
@@ -364,11 +335,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.UserServiceUnitTest" />
-        <item itemvalue="Gradle.Tests in 'my-microservices.user.test'" />
-        <item itemvalue="Gradle.Tests in 'com.example.demo'" />
-        <item itemvalue="Gradle.VideoControllerIntegrationTest (1)" />
+        <item itemvalue="Gradle.VideoControllerIntegrationTest.testUploadVideoFailure" />
+        <item itemvalue="Gradle.VideoControllerIntegrationTest.testUploadVideo" />
+        <item itemvalue="Gradle.VideoControllerIntegrationTest" />
         <item itemvalue="Gradle.VideoControllerTest" />
+        <item itemvalue="Gradle.VideoControllerIntegrationTest.uploadVideoSuccess" />
       </list>
     </recent_temporary>
   </component>
@@ -400,7 +371,7 @@
       <workItem from="1718577655019" duration="1135000" />
       <workItem from="1718580876117" duration="1313000" />
       <workItem from="1718582734033" duration="889000" />
-      <workItem from="1718586085012" duration="48886000" />
+      <workItem from="1718586085012" duration="56590000" />
     </task>
     <servers />
   </component>
@@ -447,7 +418,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/user/src/main/java/org/example/user/business/impl/UserCleanupConfirmationService.java</url>
-          <line>21</line>
+          <line>29</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
