@@ -22,15 +22,27 @@ spec:
         image: IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER  # This will be replaced dynamically
         ports:
         - containerPort: 8082
-        readinessProbe:
-          httpGet:
-            path: /actuator/health
-            port: 8082
-          initialDelaySeconds: 10
-          periodSeconds: 5
         livenessProbe:
           httpGet:
             path: /actuator/health
             port: 8082
+            httpHeaders:
+            - name: Authorization
+              value: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY5RmUtOTNXVW15My1veEJVbnNPdSJ9.eyJpc3MiOiJodHRwczovL2Rldi12cGxubWo1dXJ5dG11bHh3LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI4U3NReHNFejNEZFF4cEpOQW4zQklVUHlza3JkT3Y4RkBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2FwaS91c2Vycy9jcmVhdGVPclVwZGF0ZSIsImlhdCI6MTcxOTE5Mzk4NCwiZXhwIjoxNzE5MjgwMzg0LCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiI4U3NReHNFejNEZFF4cEpOQW4zQklVUHlza3JkT3Y4RiJ9.KiLw-C77IYosrBvMoy6ot85TF5JM-GYAJdHxYSbCx4ixUbj5rgPYZPHaF4KCl3fLU2s8aqL6zi8e_8gsZZkPmHl6Xj0773oXHadZGmh4JVZYq61pqzV3rdPsoA-Qx3Cdl-NM9DX7m666euaWjAcOz1rbfsOemAUh3rhsuaX77d4pshVAqhKU9Gp2BgffzLj3c0VBsUgL01k1YB4VWWZDpW7WqPWKjJyUOwgGO3Vm6ojcuCkb-YA4SAFweECVnWYv8PVW39j5cEimY-CoA73xq6sheRXb0iJPDqq65LwDTKSHEGidCtv593aJxdctpbRnsYURBkh8P2f6AfrbYBKyUA
           initialDelaySeconds: 20
+          timeoutSeconds: 5
           periodSeconds: 5
+          failureThreshold: 3
+        
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8082
+            httpHeaders:
+            - name: Authorization
+              value: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY5RmUtOTNXVW15My1veEJVbnNPdSJ9.eyJpc3MiOiJodHRwczovL2Rldi12cGxubWo1dXJ5dG11bHh3LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI4U3NReHNFejNEZFF4cEpOQW4zQklVUHlza3JkT3Y4RkBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2FwaS91c2Vycy9jcmVhdGVPclVwZGF0ZSIsImlhdCI6MTcxOTE5Mzk4NCwiZXhwIjoxNzE5MjgwMzg0LCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiI4U3NReHNFejNEZFF4cEpOQW4zQklVUHlza3JkT3Y4RiJ9.KiLw-C77IYosrBvMoy6ot85TF5JM-GYAJdHxYSbCx4ixUbj5rgPYZPHaF4KCl3fLU2s8aqL6zi8e_8gsZZkPmHl6Xj0773oXHadZGmh4JVZYq61pqzV3rdPsoA-Qx3Cdl-NM9DX7m666euaWjAcOz1rbfsOemAUh3rhsuaX77d4pshVAqhKU9Gp2BgffzLj3c0VBsUgL01k1YB4VWWZDpW7WqPWKjJyUOwgGO3Vm6ojcuCkb-YA4SAFweECVnWYv8PVW39j5cEimY-CoA73xq6sheRXb0iJPDqq65LwDTKSHEGidCtv593aJxdctpbRnsYURBkh8P2f6AfrbYBKyUA
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          periodSeconds: 5
+          failureThreshold: 3
+
