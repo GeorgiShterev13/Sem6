@@ -72,7 +72,7 @@ jobs:
         
 
   sonarqube:
-    needs: build-and-test
+    needs: [build-and-test, snyk-scan]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -111,7 +111,7 @@ jobs:
 
 
   deploy:
-    needs: [build-and-test, sonarqube]
+    needs: [build-and-test, snyk-scan, sonarqube]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
