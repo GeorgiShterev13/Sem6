@@ -22,6 +22,15 @@ spec:
         image: IMAGE_NAME_PLACEHOLDER:TAG_PLACEHOLDER  # This will be replaced dynamically
         ports:
         - containerPort: 8082
+        env:
+        - name: SPRING_RABBITMQ_HOST
+          value: rabbitmq
+        - name: SPRING_RABBITMQ_PORT
+          value: "5672"
+        - name: SPRING_RABBITMQ_USERNAME
+          value: admin
+        - name: SPRING_RABBITMQ_PASSWORD
+          value: adminpassword
         livenessProbe:
           httpGet:
             path: /actuator/health
